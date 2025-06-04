@@ -7,6 +7,7 @@ import Signup from "../components/Signup";
 import Login from "../components/Login";
 import Marathons from "../Pages/Marathons/Marathons";
 import Dashboard from "../components/Dashboard";
+import ErrorPage from "../components/ErrorPage";
 
 
 export const router = createBrowserRouter([
@@ -39,6 +40,6 @@ export const router = createBrowserRouter([
   },
   {
       path: "/*",
-      element:<h1>Error</h1>
+      Component:ErrorPage
     }
 ]);
