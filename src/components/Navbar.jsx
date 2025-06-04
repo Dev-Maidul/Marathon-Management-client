@@ -13,7 +13,7 @@ const Navbar = () => {
         <NavLink to='/'>Home</NavLink>
       </li>
       <li>
-        <NavLink to='/'>Marathons</NavLink>
+        <NavLink to='/marathons'>Marathons</NavLink>
       </li>
     </>
   );
@@ -66,7 +66,7 @@ const Navbar = () => {
         <div className="flex gap-2">
           {user ? (
             <>
-            <Link><button className="btn btn-success">Dashboard</button></Link>
+            <Link to='/dashboard'><button className="btn btn-success">Dashboard</button></Link>
             <button onClick={handleLogout} className="btn btn-active btn-primary mr-2">
               Log Out
             </button>
