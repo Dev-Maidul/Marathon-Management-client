@@ -15,6 +15,9 @@ const Navbar = () => {
       <li>
         <NavLink to='/marathons'>Marathons</NavLink>
       </li>
+      <li>
+        <NavLink to='/add-marathon'>Add Marathon</NavLink>
+      </li>
     </>
   );
 

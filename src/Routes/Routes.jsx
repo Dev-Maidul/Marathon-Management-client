@@ -8,6 +8,8 @@ import Login from "../components/Login";
 import Marathons from "../Pages/Marathons/Marathons";
 import Dashboard from "../components/Dashboard";
 import ErrorPage from "../components/ErrorPage";
+import PrivateRoute from '../Context/PrivateRoute';
+import AddMarathon from "../Pages/Marathons/AddMarathon";
 
 
 export const router = createBrowserRouter([
@@ -35,6 +37,10 @@ export const router = createBrowserRouter([
             path:'/dashboard',
             Component:Dashboard
         },
+        {
+            path:'/add-marathon',
+            element:<PrivateRoute><AddMarathon></AddMarathon></PrivateRoute>
+        }
     ]
     
   },
