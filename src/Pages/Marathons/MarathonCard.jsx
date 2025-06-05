@@ -4,9 +4,8 @@ import { IoLocationSharp } from 'react-icons/io5';
 import { Link } from 'react-router';
 
 const MarathonCard = ({marathon}) => {
-    const {image,title,startRegDate,location}=marathon;
+    const {image,title,startRegDate,location,_id}=marathon;
     const dateformat=new Date(startRegDate).toISOString().split('T')[0];
-    console.log(dateformat);
     return (
         <div>
             <div className="card bg-base-100 w-full shadow-sm">
@@ -23,7 +22,7 @@ const MarathonCard = ({marathon}) => {
     <h1 className='text-semibold flex items-center gap-1'><CiCalendarDate size={25} />{dateformat}</h1>
     </div>
     <div className="card-actions justify-end">
-      <Link><button className="btn btn-primary">See Details</button></Link>
+      <Link to={`/marathon-details/${_id}`}><button className="btn btn-primary">See Details</button></Link>
     </div>
   </div>
 </div>
