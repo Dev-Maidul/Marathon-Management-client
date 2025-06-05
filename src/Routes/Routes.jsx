@@ -10,6 +10,7 @@ import Dashboard from "../components/Dashboard";
 import ErrorPage from "../components/ErrorPage";
 import PrivateRoute from '../Context/PrivateRoute';
 import AddMarathon from "../Pages/Marathons/AddMarathon";
+import Spinner from "../Components/Spinner";
 
 
 export const router = createBrowserRouter([
@@ -19,6 +20,8 @@ export const router = createBrowserRouter([
     children:[
         {
             index:true,
+            hydrateFallbackElement:<Spinner></Spinner>,
+            loader:()=> fetch('http://localhost:3000/marathons'),
             Component:Home
         },
         {
