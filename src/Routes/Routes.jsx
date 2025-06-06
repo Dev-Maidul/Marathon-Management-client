@@ -13,6 +13,7 @@ import DashboardLayout from "../components/DashboardLayout";
 import MyMarathonList from "../Pages/Marathons/MyMarathonList";
 import MyApplyList from "../Pages/Marathons/MyApplyList";
 import MarathonRegistration from "../Pages/Marathons/MarathonRegistration";
+import DashboardWelcome from "../components/DashboardWelcome";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         children: [
+        {
+          index:true,
+          Component:DashboardWelcome
+        },
           {
             path: "add-marathon",
             element: <AddMarathon />,

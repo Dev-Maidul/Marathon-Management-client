@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import axios from 'axios';
+import Spinner from '../../Components/Spinner';
 
 const MyApplyList = () => {
   const { user } = useContext(AuthContext);
@@ -21,7 +22,7 @@ const MyApplyList = () => {
     }
   }, [user?.email]);
 
-  if (loading) return <div className="text-center py-10">Loading...</div>;
+  if (loading) return <Spinner></Spinner>
 
   return (
     <div className="max-w-4xl mx-auto p-4">
