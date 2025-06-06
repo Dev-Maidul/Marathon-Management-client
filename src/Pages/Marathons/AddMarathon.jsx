@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
 import { AuthContext } from '../../Context/AuthProvider';
+import { useNavigate } from 'react-router';
 
 const formatDate = (date) => {
   if (!date) return null;
@@ -12,7 +13,7 @@ const formatDate = (date) => {
 
 const AddMarathon = () => {
   const { user } = use(AuthContext);
-
+ const navigate=useNavigate();
   const [marathon, setMarathon] = useState({
     title: '',
     startRegDate: null,
@@ -54,6 +55,7 @@ const AddMarathon = () => {
           timer: 2000,
           showConfirmButton: false,
         });
+        navigate('/dashboard/my-marathons');
 
         setMarathon({
           title: '',
