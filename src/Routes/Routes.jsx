@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         hydrateFallbackElement: <Spinner></Spinner>,
-        loader: () => fetch("http://localhost:3000/marathons"),
+        loader: () => fetch("http://localhost:3000/marathons/featured"),
         Component: Home,
       },
       {
@@ -35,7 +35,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/marathons",
-        Component: Marathons,
+        hydrateFallbackElement: <Spinner></Spinner>,
+        loader: () =>
+          fetch('http://localhost:3000/marathons'),
+        element: <PrivateRoute>
+          <Marathons></Marathons>
+        </PrivateRoute>
       },
       {
         path: "registration/:id",
