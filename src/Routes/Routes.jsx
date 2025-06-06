@@ -4,12 +4,12 @@ import Root from "../Layouts/Root";
 import Signup from "../components/Signup";
 import Login from "../components/Login";
 import Marathons from "../Pages/Marathons/Marathons";
-import Dashboard from "../components/Dashboard";
 import ErrorPage from "../components/ErrorPage";
 import PrivateRoute from "../Context/PrivateRoute";
 import AddMarathon from "../Pages/Marathons/AddMarathon";
 import Spinner from "../Components/Spinner";
 import MarathonDetails from "../Pages/Marathons/MarathonDetails";
+import DashboardLayout from "../components/DashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        Component: Dashboard,
+        Component: DashboardLayout,
       },
       {
         path: "/add-marathon",
