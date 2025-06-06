@@ -10,6 +10,9 @@ import AddMarathon from "../Pages/Marathons/AddMarathon";
 import Spinner from "../Components/Spinner";
 import MarathonDetails from "../Pages/Marathons/MarathonDetails";
 import DashboardLayout from "../components/DashboardLayout";
+import MyMarathonList from "../Pages/Marathons/MyMarathonList";
+import MyApplyList from "../Pages/Marathons/MyApplyList";
+import MarathonRegistration from "../Pages/Marathons/MarathonRegistration";
 
 export const router = createBrowserRouter([
   {
@@ -35,16 +38,37 @@ export const router = createBrowserRouter([
         Component: Marathons,
       },
       {
-        path: "/dashboard",
-        Component: DashboardLayout,
-      },
-      {
-        path: "/add-marathon",
+        path: "registration/:id",
+        hydrateFallbackElement: <Spinner></Spinner>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/marathons/${params.id}`),
         element: (
           <PrivateRoute>
-            <AddMarathon></AddMarathon>
+            <MarathonRegistration></MarathonRegistration>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <DashboardLayout />
+          </PrivateRoute>
+        ),
+        children: [
+          {
+            path: "add-marathon",
+            element: <AddMarathon />,
+          },
+          {
+            path: "my-marathons",
+            Component: MyMarathonList,
+          },
+          {
+            path: "my-applies",
+            Component: MyApplyList,
+          },
+        ],
       },
       {
         path: "/marathon-details/:id",

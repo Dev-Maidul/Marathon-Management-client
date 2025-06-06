@@ -5,19 +5,25 @@ import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
 import { AuthContext } from '../../Context/AuthProvider';
 
+const formatDate = (date) => {
+  if (!date) return null;
+  return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+};
+
 const AddMarathon = () => {
-  const {user}=use(AuthContext);
-  console.log(user);
+  const { user } = use(AuthContext);
+
   const [marathon, setMarathon] = useState({
     title: '',
     startRegDate: null,
     endRegDate: null,
+    startDate: null,
     createdAt: null,
     location: '',
     distance: '10k',
     description: '',
     image: '',
-    email:user?.email,
+    email: user?.email,
   });
 
   const handleChange = (e) => {
@@ -30,13 +36,15 @@ const AddMarathon = () => {
 
     const newMarathon = {
       ...marathon,
-      createdAt: new Date(),
+      createdAt: formatDate(new Date()),
+      startRegDate: formatDate(marathon.startRegDate),
+      endRegDate: formatDate(marathon.endRegDate),
+      startDate: formatDate(marathon.startDate),
       totalRegistrationCount: 0,
     };
 
     try {
       const res = await axios.post('http://localhost:3000/add-marathon', newMarathon);
-
 
       if (res.status === 200 || res.status === 201) {
         Swal.fire({

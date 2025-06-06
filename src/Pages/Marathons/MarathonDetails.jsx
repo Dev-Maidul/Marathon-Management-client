@@ -86,7 +86,7 @@ const MarathonDetails = () => {
           </button>
           
           <div className="stat-value">
-            Number of Registrations: {marathon.registrations || 0}
+            Total Registrations Count: {marathon.totalRegistrationCount || 0}
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -100,7 +100,7 @@ const MarathonDetails = () => {
               Marathon Start: {startDate}
             </button>
           </div>
-          <Link to={`/marathons/${id}/register`}>
+          <Link to={`/registration/${id}`}>
           <button 
             className={`btn ${isRegisterEnabled ? 'btn-success' : 'btn-disabled'} text-center w-full`}
             disabled={!isRegisterEnabled}
