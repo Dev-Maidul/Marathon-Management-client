@@ -3,11 +3,17 @@ import { AuthContext } from "../../Context/AuthProvider";
 import axios from "axios";
 import Spinner from "../../Components/Spinner";
 import Swal from "sweetalert2";
+import UserModal from "../../components/UserModal";
+
 
 const MyApplyList = () => {
   const { user } = useContext(AuthContext);
   const [registrations, setRegistrations] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // modal related state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedReg, setSelectedReg] = useState(null);
 
   useEffect(() => {
     if (user?.email) {
@@ -25,9 +31,9 @@ const MyApplyList = () => {
   }, [user?.email]);
 
   if (loading) return <Spinner></Spinner>;
-  // handle Delete
-const handleDelete = (id) => {
- 
+
+  // Delete function same as before
+  const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -55,6 +61,37 @@ const handleDelete = (id) => {
       }
     });
   };
+
+  // When update button is clicked
+  const handleUpdateClick = (reg) => {
+    setSelectedReg(reg);
+    setIsModalOpen(true);
+  };
+
+  // Modal 
+  const handleUpdateSubmit = (updatedData) => {
+    axios
+      .patch(`http://localhost:3000/registrations/${selectedReg._id}`, updatedData)
+      .then((res) => {
+        if (res.data.success) {
+          Swal.fire("Updated!", res.data.message, "success");
+          // Update local state
+          setRegistrations((prev) =>
+            prev.map((reg) =>
+              reg._id === selectedReg._id ? { ...reg, ...updatedData } : reg
+            )
+          );
+          setIsModalOpen(false);
+        } else {
+          Swal.fire("Failed!", res.data.message, "error");
+        }
+      })
+      .catch((err) => {
+        console.error("Update error:", err);
+        Swal.fire("Error!", "Update failed.", "error");
+      });
+  };
+
   return (
     <div className="max-w-4xl mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">
@@ -88,13 +125,28 @@ const handleDelete = (id) => {
               <p className="text-sm text-gray-500">
                 Registered on: {new Date(reg.timestamp).toLocaleString()}
               </p>
-              <button className="btn btn-xs btn-info mr-2">Update</button>
-      <button onClick={()=>handleDelete(reg._id)} className="btn btn-xs btn-error">Delete</button>
+              <button
+                onClick={() => handleUpdateClick(reg)}
+                className="btn btn-xs btn-info mr-2"
+              >
+                Update
+              </button>
+              <button
+                onClick={() => handleDelete(reg._id)}
+                className="btn btn-xs btn-error"
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>
       )}
-      
+      <UserModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        registration={selectedReg}
+        onUpdate={handleUpdateSubmit}
+      />
     </div>
   );
 };
