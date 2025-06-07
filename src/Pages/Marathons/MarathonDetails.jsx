@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Spinner from "../../Components/Spinner";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const MarathonDetails = () => {
   const { id } = useParams();
@@ -55,6 +56,7 @@ const MarathonDetails = () => {
 
   return (
     <div className="p-4 shadow-md dark:bg-gray-50 dark:text-gray-800 w-full">
+      <Helmet><title>details</title></Helmet>
       <div className="flex justify-between pb-4 border-bottom">
         <div className="flex items-center">
           {/* Optional category link can go here */}

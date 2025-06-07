@@ -108,7 +108,7 @@ const UserModal = ({ isOpen, onClose, registration, onUpdate }) => {
               Cancel
             </button>
             <button type="submit" className="btn btn-primary">
-              Save Changes
+              Update Registration
             </button>
           </div>
         </form>

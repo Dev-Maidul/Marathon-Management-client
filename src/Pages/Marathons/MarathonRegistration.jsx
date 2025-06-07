@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../Context/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const MarathonRegistration = () => {
   const { id } = useParams();
@@ -59,7 +60,7 @@ const MarathonRegistration = () => {
       navigate('/dashboard/my-applies')
       form.reset();
     } catch (err) {
-      console.error("❌ Registration failed:", err);
+      console.error("Registration failed:", err);
       alert("Something went wrong!");
     }
   };
@@ -69,6 +70,7 @@ const MarathonRegistration = () => {
 
   return (
     <div className="max-w-md mx-auto p-4 shadow rounded bg-white">
+      <Helmet><title>Registration</title></Helmet>
       <h2 className="text-xl font-bold mb-4">Register for {marathon.title}</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -106,7 +108,7 @@ const MarathonRegistration = () => {
           className="w-full border p-2 rounded"
         />
         <input
-          type="text"
+          type="number"
           name="contact"
           placeholder="Contact Number"
           required

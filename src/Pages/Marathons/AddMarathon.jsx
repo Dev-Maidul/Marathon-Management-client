@@ -5,6 +5,7 @@ import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
 import { AuthContext } from '../../Context/AuthProvider';
 import { useNavigate } from 'react-router';
+import { Helmet } from 'react-helmet';
 
 const formatDate = (date) => {
   if (!date) return null;
@@ -80,6 +81,7 @@ const AddMarathon = () => {
 
   return (
     <div className="min-h-screen p-4 bg-gray-100 overflow-x-hidden">
+      <Helmet><title>add-marathon</title></Helmet>
       <div className="max-w-3xl mx-auto bg-white shadow-md rounded-xl p-6">
         <h2 className="text-3xl font-bold mb-6 text-center">Add New Marathon</h2>
         <form className="space-y-6" onSubmit={handleSubmit}>

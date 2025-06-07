@@ -4,6 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import UpdateModal from "../../components/UpdateModal";
 import Spinner from '../../components/Spinner';
+import { Helmet } from "react-helmet";
 
 const MyMarathonList = () => {
   const { user,loading,setLoading } = useContext(AuthContext);
@@ -58,6 +59,7 @@ console.log(loading)
 
   return (
     <div className="p-4">
+      <Helmet><title>my-marathons</title></Helmet>
       <h2 className="text-2xl font-bold mb-4 text-center">Your Created Marathons</h2>
       {myMarathons.length === 0 ? (
         <p className="text-center text-gray-500">You have not created any marathons yet.</p>

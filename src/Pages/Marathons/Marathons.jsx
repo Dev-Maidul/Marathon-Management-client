@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import MarathonCard from "./MarathonCard";
+import { Helmet } from "react-helmet";
 // Mern2025@
 const Marathons = () => {
   const initialMarathon = useLoaderData();
@@ -8,6 +9,7 @@ const Marathons = () => {
 //   console.log(marathons);
   return (
     <div className="dark:bg-gray-100 dark:text-gray-800 rounded-2xl py-8 mb-8">
+      <Helmet><title>marathons</title></Helmet>
       <h2 className="text-2xl font-semibold sm:text-4xl text-center py-4">
         All Marathons
       </h2>

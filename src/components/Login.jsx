@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { use, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const [error,setError]=useState("");
@@ -75,9 +76,9 @@ const Login = () => {
       
   return (
     <div className="flex items-center justify-center mt-4 py-8">
-        {/* <Helmet>
-              <title>Log In</title>
-              </Helmet> */}
+            <Helmet>
+              <title>LogIn</title>
+              </Helmet>
       <div className="hero">
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">

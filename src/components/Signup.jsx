@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthProvider";
+import { Helmet } from "react-helmet";
 //Maidul123$
 const Signup = () => {
   const { CreateUser, setUser, updateUser, googleSignIn } =
@@ -103,6 +104,9 @@ const Signup = () => {
 
   return (
     <div className="card bg-base-100 mx-auto w-full max-w-sm shrink-0 shadow-2xl">
+        <Helmet>
+        <title>SignUp</title>
+      </Helmet>
       <div className="card-body">
         <h1 className="text-5xl font-bold">Register now!</h1>
         <form onSubmit={handleSignup}>
