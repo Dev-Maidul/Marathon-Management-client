@@ -12,7 +12,7 @@ const MarathonCard = ({marathon}) => {
   <figure>
     <img
       src={image}
-      className='h-[250px]'
+      className='h-[250px] w-full'
       alt="Marathon Banner" />
   </figure>
   <div className="card-body">
