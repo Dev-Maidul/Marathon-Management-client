@@ -5,12 +5,14 @@ import Testimonial from '../../components/Testimonial';
 import FeatureMarathon from './FeatureMarathon';
 import { useLoaderData } from 'react-router';
 
+
 const Home = () => {
     const initialMarathon=useLoaderData();
     const [marathons,setMarathons]=useState(initialMarathon);
     // console.log(marathons);
     return (
         <div>
+            
             <Slider></Slider>
             <FeatureMarathon marathons={marathons}></FeatureMarathon>
             <FAQ></FAQ>

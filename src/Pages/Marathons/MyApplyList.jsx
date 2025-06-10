@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { use, useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import axios from "axios";
 import Spinner from "../../Components/Spinner";
@@ -19,11 +19,15 @@ const MyApplyList = () => {
 
   // Search keyword state
   const [searchTerm, setSearchTerm] = useState("");
-
+  console.log(user.accessToken);
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`${BASE_URL}/registrations/by-email/${user.email}`)
+        .get(`${BASE_URL}/registrations/by-email/${user.email}`,{
+          headers: {
+            Authorization: `Bearer ${user?.accessToken}`
+          }
+        })
         .then((res) => {
           setRegistrations(res.data);
           setLoading(false);
