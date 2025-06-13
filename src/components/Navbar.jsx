@@ -15,9 +15,7 @@ const Navbar = () => {
       <li>
         <NavLink to='/marathons'>Marathons</NavLink>
       </li>
-      <li>
-        <NavLink to='/add-marathon'>Add Marathon</NavLink>
-      </li>
+      
     </>
   );
 
@@ -77,12 +75,13 @@ const Navbar = () => {
             
           ) : (
             <>
+            <Link to="/login">
+                <button className="btn btn-success">Login</button>
+              </Link>
               <Link to="/signup">
                 <button className="btn btn-primary">Register</button>
               </Link>
-              <Link to="/login">
-                <button className="btn btn-success">Login</button>
-              </Link>
+              
             </>
           )}
         </div>

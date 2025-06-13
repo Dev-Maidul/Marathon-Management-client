@@ -5,21 +5,21 @@ import Swal from "sweetalert2";
 import UpdateModal from "../../components/UpdateModal";
 import Spinner from '../../components/Spinner';
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyMarathonList = () => {
   const { user,loading,setLoading } = useContext(AuthContext);
   const [myMarathons, setMyMarathons] = useState([]);
   const [selectedMarathon, setSelectedMarathon] = useState(null);
-
+  const axiosSecure=useAxiosSecure();     
 if(loading) return <Spinner></Spinner>
-console.log(loading)
   const fetchMarathons = () => {
-    axios
+    axiosSecure
       .get(`http://localhost:3000/my-marathons?email=${user.email}`)
       .then((res) => {
         setMyMarathons(res.data)
         setLoading(false);
-        console.log(loading)
+        
       })
       .catch((err) => console.error("Fetch error:", err));
   };
@@ -35,7 +35,7 @@ console.log(loading)
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
+        axiosSecure
           .delete(`http://localhost:3000/marathons/${id}`)
           .then((res) => {
             if (res.data.success || res.data.deletedCount) {
@@ -59,7 +59,7 @@ console.log(loading)
 
   return (
     <div className="p-4">
-      <Helmet><title>my-marathons</title></Helmet>
+      <title>my-marathons-list</title>
       <h2 className="text-2xl font-bold mb-4 text-center">Your Created Marathons</h2>
       {myMarathons.length === 0 ? (
         <p className="text-center text-gray-500">You have not created any marathons yet.</p>

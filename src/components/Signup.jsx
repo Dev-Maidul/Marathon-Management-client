@@ -118,19 +118,20 @@ const Signup = () => {
               className="input"
               placeholder="Name"
             />
-            <label className="label">Photo</label>
-            <input
-              name="photo"
-              type="text"
-              className="input"
-              placeholder="Photo URL"
-            />
+            
             <label className="label">Email</label>
             <input
               name="email"
               type="email"
               className="input"
               placeholder="Your email"
+            />
+            <label className="label">Photo</label>
+            <input
+              name="photo"
+              type="text"
+              className="input"
+              placeholder="Photo URL"
             />
             <label className="label">Password</label>
             <div className="relative">

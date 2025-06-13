@@ -4,6 +4,7 @@ import axios from "axios";
 import { AuthContext } from "../../Context/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import Spinner from "../../Components/Spinner";
 
 const MarathonRegistration = () => {
   const { id } = useParams();
@@ -65,7 +66,7 @@ const MarathonRegistration = () => {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Spinner></Spinner>;
   if (!marathon) return <div>Marathon not found</div>;
 
   return (

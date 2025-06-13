@@ -76,9 +76,9 @@ const MarathonDetails = () => {
 
   return (
     <div className="p-4 shadow-md dark:bg-gray-50 dark:text-gray-800 w-full">
-      <Helmet>
+      
         <title>Marathon Details</title>
-      </Helmet>
+      
 
       <div className="flex justify-between pb-4 border-b">
         {/* Add any header content here */}

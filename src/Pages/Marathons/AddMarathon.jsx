@@ -5,7 +5,7 @@ import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
 import { AuthContext } from '../../Context/AuthProvider';
 import { useNavigate } from 'react-router';
-import { Helmet } from 'react-helmet';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const formatDate = (date) => {
   if (!date) return null;
@@ -32,21 +32,21 @@ const AddMarathon = () => {
     const { name, value } = e.target;
     setMarathon({ ...marathon, [name]: value });
   };
-
+  const axiosSecure=useAxiosSecure();
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+// const milliseconds = new Date(marathon.startDate).getTime();
     const newMarathon = {
       ...marathon,
       createdAt: formatDate(new Date()),
       startRegDate: formatDate(marathon.startRegDate),
       endRegDate: formatDate(marathon.endRegDate),
-      startDate: formatDate(marathon.startDate),
+      startDate: marathon.startDate,
       totalRegistrationCount: 0,
     };
 
     try {
-      const res = await axios.post('http://localhost:3000/add-marathon', newMarathon);
+      const res = await axiosSecure.post('http://localhost:3000/add-marathon', newMarathon);
 
       if (res.status === 200 || res.status === 201) {
         Swal.fire({
@@ -81,7 +81,7 @@ const AddMarathon = () => {
 
   return (
     <div className="min-h-screen p-4 bg-gray-100 overflow-x-hidden">
-      <Helmet><title>add-marathon</title></Helmet>
+     <title>add-marathon</title>
       <div className="max-w-3xl mx-auto bg-white shadow-md rounded-xl p-6">
         <h2 className="text-3xl font-bold mb-6 text-center">Add New Marathon</h2>
         <form className="space-y-6" onSubmit={handleSubmit}>

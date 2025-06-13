@@ -14,6 +14,7 @@ import MyMarathonList from "../Pages/Marathons/MyMarathonList";
 import MyApplyList from "../Pages/Marathons/MyApplyList";
 import MarathonRegistration from "../Pages/Marathons/MarathonRegistration";
 import DashboardWelcome from "../components/DashboardWelcome";
+import ErrorLayout from "../components/ErrorLayout";
 
 export const router = createBrowserRouter([
   {
@@ -37,11 +38,12 @@ export const router = createBrowserRouter([
       {
         path: "/marathons",
         hydrateFallbackElement: <Spinner></Spinner>,
-        loader: () =>
-          fetch('http://localhost:3000/marathons'),
-        element: <PrivateRoute>
-          <Marathons></Marathons>
-        </PrivateRoute>
+        loader: () => fetch("http://localhost:3000/marathons"),
+        element: (
+          <PrivateRoute>
+            <Marathons></Marathons>
+          </PrivateRoute>
+        ),
       },
       {
         path: "registration/:id",
@@ -62,10 +64,10 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         children: [
-        {
-          index:true,
-          Component:DashboardWelcome
-        },
+          {
+            index: true,
+            Component: DashboardWelcome,
+          },
           {
             path: "add-marathon",
             element: <AddMarathon />,
@@ -78,8 +80,10 @@ export const router = createBrowserRouter([
             path: "my-applies",
             Component: MyApplyList,
           },
+          
         ],
       },
+
       {
         path: "/marathon-details/:id",
         hydrateFallbackElement: <Spinner></Spinner>,
@@ -95,6 +99,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "/*",
-    Component: ErrorPage,
+    Component: ErrorLayout,
   },
 ]);

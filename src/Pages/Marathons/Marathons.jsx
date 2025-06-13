@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import MarathonCard from "./MarathonCard";
 import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Marathons = () => {
   const [marathons, setMarathons] = useState([]);
   const [sortOrder, setSortOrder] = useState("newest"); 
-
+  const axiosSecure=useAxiosSecure();
   useEffect(() => {
-    axios
+    axiosSecure
       .get(`http://localhost:3000/marathons?sort=${sortOrder}`)
       .then((res) => {
         setMarathons(res.data);
@@ -19,8 +20,9 @@ const Marathons = () => {
   }, [sortOrder]);  
 
   return (
+  
     <div className="dark:bg-gray-100 dark:text-gray-800 rounded-2xl py-8 mb-8">
-      <Helmet><title>Marathons</title></Helmet>
+      <title>Marathons</title>
       <h2 className="text-2xl font-semibold sm:text-4xl text-center py-4">
         All Marathons
       </h2>

@@ -4,8 +4,8 @@ import { IoLocationSharp } from 'react-icons/io5';
 import { Link } from 'react-router';
 
 const MarathonCard = ({marathon}) => {
-    const {image,title,startRegDate,location,_id}=marathon;
-    const dateformat=new Date(startRegDate).toISOString().split('T')[0];
+    const {image,title,startRegDate,location,_id,startDate}=marathon;
+    const dateformat=new Date(startDate).toISOString().split('T')[0];
     return (
         <div>
             <div className="card bg-base-100 w-full shadow-sm">

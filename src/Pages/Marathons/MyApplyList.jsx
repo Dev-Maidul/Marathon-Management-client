@@ -1,15 +1,16 @@
 import React, { use, useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Context/AuthProvider";
 import axios from "axios";
 import Spinner from "../../Components/Spinner";
 import Swal from "sweetalert2";
 import UserModal from "../../components/UserModal";
 import { Helmet } from "react-helmet";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const BASE_URL = "http://localhost:3000";  
 
 const MyApplyList = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const [registrations, setRegistrations] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -19,15 +20,11 @@ const MyApplyList = () => {
 
   // Search keyword state
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(user.accessToken);
+  // console.log(user.accessToken);
+  const axiosSecure=useAxiosSecure();
   useEffect(() => {
     if (user?.email) {
-      axios
-        .get(`${BASE_URL}/registrations/by-email/${user.email}`,{
-          headers: {
-            Authorization: `Bearer ${user?.accessToken}`
-          }
-        })
+      axiosSecure.get(`/registrations/by-email/${user.email}`)
         .then((res) => {
           setRegistrations(res.data);
           setLoading(false);
@@ -37,7 +34,7 @@ const MyApplyList = () => {
           setLoading(false);
         });
     }
-  }, [user?.email]);
+  }, [user?.email,axiosSecure]);
 
   if (loading) return <Spinner />;
 
@@ -57,7 +54,7 @@ const MyApplyList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios
+        axiosSecure
           .delete(`${BASE_URL}/registrations/${id}`)
           .then((res) => {
             if (res.data.success || res.data.deletedCount) {
@@ -81,7 +78,7 @@ const MyApplyList = () => {
   };
 
   const handleUpdateSubmit = (updatedData) => {
-    axios
+    axiosSecure
       .patch(`${BASE_URL}/registrations/${selectedReg._id}`, updatedData)
       .then((res) => {
         if (res.data.success) {
@@ -104,10 +101,10 @@ const MyApplyList = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <Helmet><title>my-applies</title></Helmet>
+      <title>my-apply-list</title>
 
       <h2 className="text-2xl font-bold mb-4">
-        📝 Your registered marathons list = {registrations.length}
+        📝 Your apply list = {registrations.length}
       </h2>
 
       {/* Search Input */}
