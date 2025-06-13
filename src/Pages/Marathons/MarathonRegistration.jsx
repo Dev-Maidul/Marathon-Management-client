@@ -14,7 +14,7 @@ const MarathonRegistration = () => {
     const navigate=useNavigate();
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/marathons/${id}`)
+      .get(`https://marathon-management-server-flax.vercel.app/marathons/${id}`)
       .then((res) => {
         setMarathon(res.data);
         setLoading(false);
@@ -44,10 +44,10 @@ const MarathonRegistration = () => {
 
     try {
       // Save registration
-      await axios.post("http://localhost:3000/registrations", registrationData);
+      await axios.post("https://marathon-management-server-flax.vercel.app/registrations", registrationData);
 
       // Update registration count
-      await axios.patch(`http://localhost:3000/marathons/${marathon._id}`, {
+      await axios.patch(`https://marathon-management-server-flax.vercel.app/marathons/${marathon._id}`, {
         totalRegistrationCount: (marathon.totalRegistrationCount || 0) + 1,
       });
 

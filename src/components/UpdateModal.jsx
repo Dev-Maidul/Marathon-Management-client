@@ -31,7 +31,7 @@ const UpdateModal = ({ marathon, onClose, onUpdated }) => {
     e.preventDefault();
     try {
       const res = await axios.patch(
-        `http://localhost:3000/marathons/${marathon._id}`,
+        `https://marathon-management-server-flax.vercel.app/marathons/${marathon._id}`,
         formData
       );
       if (res.data.success) {

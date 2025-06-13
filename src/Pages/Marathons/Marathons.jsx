@@ -10,7 +10,7 @@ const Marathons = () => {
   const axiosSecure=useAxiosSecure();
   useEffect(() => {
     axiosSecure
-      .get(`http://localhost:3000/marathons?sort=${sortOrder}`)
+      .get(`https://marathon-management-server-flax.vercel.app/marathons?sort=${sortOrder}`)
       .then((res) => {
         setMarathons(res.data);
       })

@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         hydrateFallbackElement: <Spinner></Spinner>,
-        loader: () => fetch("http://localhost:3000/marathons/featured"),
+        loader: () => fetch("https://marathon-management-server-flax.vercel.app/marathons/featured"),
         Component: Home,
       },
       {
@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
       {
         path: "/marathons",
         hydrateFallbackElement: <Spinner></Spinner>,
-        loader: () => fetch("http://localhost:3000/marathons"),
+        loader: () => fetch("https://marathon-management-server-flax.vercel.app/marathons"),
         element: (
           <PrivateRoute>
             <Marathons></Marathons>
@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
         path: "registration/:id",
         hydrateFallbackElement: <Spinner></Spinner>,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/marathons/${params.id}`),
+          fetch(`https://marathon-management-server-flax.vercel.app/marathons/${params.id}`),
         element: (
           <PrivateRoute>
             <MarathonRegistration></MarathonRegistration>
@@ -88,7 +88,7 @@ export const router = createBrowserRouter([
         path: "/marathon-details/:id",
         hydrateFallbackElement: <Spinner></Spinner>,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/marathons/${params.id}`),
+          fetch(`https://marathon-management-server-flax.vercel.app/marathons/${params.id}`),
         element: (
           <PrivateRoute>
             <MarathonDetails></MarathonDetails>

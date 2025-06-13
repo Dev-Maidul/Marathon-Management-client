@@ -3,7 +3,7 @@ import React from 'react';
 import useAuth from './useAuth';
 
 const axiosInstance=axios.create({
-    baseURL:'http://localhost:3000/'
+    baseURL:'https://marathon-management-server-flax.vercel.app/'
 })
 const useAxiosSecure = () => {
     const{user}=useAuth();

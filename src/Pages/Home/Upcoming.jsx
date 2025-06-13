@@ -8,7 +8,7 @@ const Upcoming = () => {
  useEffect(() => {
   const fetchMarathons = async () => {
     try {
-      const response = await axiosSecure.get(`http://localhost:3000/upcoming-marathons`);
+      const response = await axiosSecure.get(`https://marathon-management-server-flax.vercel.app/upcoming-marathons`);
       console.log(response);
       setMarathons(response.data);
     } catch (err) {

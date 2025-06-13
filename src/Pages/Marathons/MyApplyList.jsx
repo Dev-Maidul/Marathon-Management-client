@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 
-const BASE_URL = "http://localhost:3000";  
+const BASE_URL = "https://marathon-management-server-flax.vercel.app";  
 
 const MyApplyList = () => {
   const { user } = useAuth();
@@ -101,28 +101,31 @@ const MyApplyList = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <title>my-apply-list</title>
+  <title>my-apply-list</title>
 
-      <h2 className="text-2xl font-bold mb-4">
-        📝 Your apply list = {registrations.length}
-      </h2>
+  <h2 className="text-2xl font-bold mb-4">
+    📝 Your apply list = {registrations.length}
+  </h2>
 
-      {/* Search Input */}
-      <input
-        type="text"
-        placeholder="Search by marathon title..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="mb-4 p-2 border border-gray-400 rounded w-full"
-      />
+  {/* Search Input */}
+  <input
+    type="text"
+    placeholder="Search by marathon title..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    className="mb-4 p-2 border border-gray-400 rounded w-full"
+  />
 
-      {filteredRegistrations.length === 0 ? (
-        <p className="text-gray-600">
-          {searchTerm
-            ? "No marathons found matching your search."
-            : "You haven't registered for any marathon yet."}
-        </p>
-      ) : (
+  {filteredRegistrations.length === 0 ? (
+    <p className="text-gray-600">
+      {searchTerm
+        ? "No marathons found matching your search."
+        : "You haven't registered for any marathon yet."}
+    </p>
+  ) : (
+    <>
+      {/* Desktop Table View */}
+      <div className="hidden md:block overflow-x-auto">
         <table className="min-w-full border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-100">
@@ -166,15 +169,50 @@ const MyApplyList = () => {
             ))}
           </tbody>
         </table>
-      )}
+      </div>
 
-      <UserModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        registration={selectedReg}
-        onUpdate={handleUpdateSubmit}
-      />
-    </div>
+      {/* Mobile Card View */}
+      <div className="md:hidden space-y-4">
+        {filteredRegistrations.map((reg, index) => (
+          <div
+            key={reg._id}
+            className="border rounded-lg shadow-md p-4 bg-white"
+          >
+            <h3 className="font-semibold text-lg mb-1">{reg.marathonTitle}</h3>
+            <p><span className="font-medium">Date:</span> {reg.marathonDate}</p>
+            <p><span className="font-medium">Name:</span> {reg.firstName} {reg.lastName}</p>
+            <p><span className="font-medium">Contact:</span> {reg.contact}</p>
+            <p><span className="font-medium">Info:</span> {reg.info || "-"}</p>
+            <p><span className="font-medium">Registered:</span> {new Date(reg.timestamp).toLocaleString()}</p>
+            <div className="mt-2 flex gap-2">
+              <button
+                onClick={() => handleUpdateClick(reg)}
+                className="btn btn-sm btn-info"
+              >
+                Update
+              </button>
+              <button
+                onClick={() => handleDelete(reg._id)}
+                className="btn btn-sm btn-error"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  )}
+
+  {/* Modal */}
+  <UserModal
+    isOpen={isModalOpen}
+    onClose={() => setIsModalOpen(false)}
+    registration={selectedReg}
+    onUpdate={handleUpdateSubmit}
+  />
+</div>
+
   );
 };
 

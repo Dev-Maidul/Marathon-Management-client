@@ -13,7 +13,7 @@ const MarathonDetails = () => {
   const [remainingTimeSeconds, setRemainingTimeSeconds] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/marathons/${id}`)
+    fetch(`https://marathon-management-server-flax.vercel.app/marathons/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setMarathon(data);

@@ -46,7 +46,7 @@ const AddMarathon = () => {
     };
 
     try {
-      const res = await axiosSecure.post('http://localhost:3000/add-marathon', newMarathon);
+      const res = await axiosSecure.post('https://marathon-management-server-flax.vercel.app/add-marathon', newMarathon);
 
       if (res.status === 200 || res.status === 201) {
         Swal.fire({
