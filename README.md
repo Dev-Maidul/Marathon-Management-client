@@ -2,7 +2,8 @@
 
 A full-stack web application for creating, managing, and participating in marathon events. Built using React, Tailwind, Firebase, MongoDB, and Node.js, this system enables users to register, organize, and monitor marathons securely and responsively across all devices.
 
-🔗 **Live Site:** https://hobby-hub-ef096.web.app 
+🔗 **Live Site:** https://hobby-hub-ef096.web.app/
+
 🌟 Highlights (Key Features)
 
 - ✅ Users can **create**, **view**, **update**, and **delete** marathon events.

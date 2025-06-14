@@ -9,7 +9,7 @@ const Marathons = () => {
   const [sortOrder, setSortOrder] = useState("newest"); 
   const axiosSecure=useAxiosSecure();
   useEffect(() => {
-    axiosSecure
+    axios
       .get(`https://marathon-management-server-flax.vercel.app/marathons?sort=${sortOrder}`)
       .then((res) => {
         setMarathons(res.data);
