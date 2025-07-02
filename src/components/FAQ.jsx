@@ -2,7 +2,7 @@ import React from "react";
 
 const FAQ = () => {
   return (
-    <section className="dark:bg-gray-100 dark:text-gray-800 rounded-2xl py-8 mb-8">
+    <section className="my-16 py-10 rounded-2xl bg-gradient-to-br from-purple-50 via-white to-green-50 px-4">
       <div className="container flex flex-col justify-center px-4 py-8 mx-auto md:p-8">
         <h2 className="text-2xl font-semibold sm:text-4xl text-center py-4">
           Frequently Asked Questions

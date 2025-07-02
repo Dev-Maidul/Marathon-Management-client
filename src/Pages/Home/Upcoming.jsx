@@ -20,14 +20,14 @@ const Upcoming = () => {
 }, []);
   // console.log(marathons)
   return (
-   <div className="dark:bg-gray-100 dark:text-gray-800 rounded-2xl py-8 mb-8">
+   <div className="my-16 py-10 rounded-2xl bg-gradient-to-br from-purple-50 via-white to-green-50 px-">
       <title>Marathons</title>
       <h2 className="text-2xl font-semibold sm:text-4xl text-center py-4">
         Get Ready for Upcoming Marathons
       </h2>
 
       {/* Marathon Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-8">
         {marathons.map((marathon) => (
           <MarathonCard marathon={marathon} key={marathon._id} />
         ))}

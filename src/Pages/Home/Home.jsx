@@ -5,6 +5,7 @@ import Testimonial from '../../components/Testimonial';
 import FeatureMarathon from './FeatureMarathon';
 import { useLoaderData } from 'react-router';
 import Upcoming from './Upcoming';
+import Blog from '../../components/Blog';
 
 
 const Home = () => {
@@ -16,13 +17,14 @@ const Home = () => {
 }, []);
     // console.log(marathons);
     return (
-        <div>
+        <div className='w-11/12 mx-auto'>
             <title>Home</title>
             <Slider></Slider>
             <FeatureMarathon marathons={marathons}></FeatureMarathon>
             <Upcoming></Upcoming>
             <FAQ></FAQ>
             <Testimonial></Testimonial>
+            <Blog></Blog>
         </div>
     );
 };

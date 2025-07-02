@@ -1,19 +1,22 @@
 import React from "react";
 import MarathonCard from "../Marathons/MarathonCard";
+import { Fade } from "react-awesome-reveal";
 
-const FeatureMarathon = ({marathons}) => {
-    // console.log(marathons)
+const FeatureMarathon = ({ marathons }) => {
   return (
-    <div className="dark:bg-gray-100 dark:text-gray-800 rounded-2xl py-8 mb-8">
-      <h2 className="text-2xl font-semibold sm:text-4xl text-center py-4">
-        Features Marathons
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8">
-        {
-            marathons?.map((marathon)=> <MarathonCard marathon={marathon} key={marathon._id}></MarathonCard>)
-        }
+    <Fade direction="up" triggerOnce cascade damping={0.15}>
+      <div className="my-16 py-10 rounded-2xl bg-gradient-to-br from-purple-50 via-white to-green-50 px-4">
+        <h2 className="text-2xl font-semibold sm:text-4xl text-center py-4">
+          Featured Marathons
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-4">
+          {marathons?.map((marathon) => (
+            <MarathonCard marathon={marathon} key={marathon._id} />
+          ))}
+        </div>
       </div>
-    </div>
+    </Fade>
   );
 };
 

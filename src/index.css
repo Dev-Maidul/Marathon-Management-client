@@ -6,3 +6,52 @@
     text-decoration: underline;
     font-weight: bold;
 }
+
+.bubble-button {
+  @apply relative flex justify-center items-center px-4 py-2 rounded-lg border transition-transform duration-300 cursor-pointer;
+  border-width: 2px;
+  background-color: #111827;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(45deg, #f81ce5, #7928ca, #0070f3);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.bubble-button:hover {
+  transform: scale(1.05);
+}
+
+.bubble-button .bubble {
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: 50%;
+  left: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+  animation: floatBubbles 6s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+  transform: translate(-50%, -50%) scale(1);
+  border-radius: 50%;
+}
+
+.bubble-button .bubble.delay-200 {
+  animation-delay: 2s;
+}
+.bubble-button .bubble.delay-400 {
+  animation-delay: 4s;
+}
+
+@keyframes floatBubbles {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -55%) scale(1.2);
+    opacity: 0.2;
+  }
+}
+
+

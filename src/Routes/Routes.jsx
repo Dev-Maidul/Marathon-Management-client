@@ -15,6 +15,9 @@ import MyApplyList from "../Pages/Marathons/MyApplyList";
 import MarathonRegistration from "../Pages/Marathons/MarathonRegistration";
 import DashboardWelcome from "../components/DashboardWelcome";
 import ErrorLayout from "../components/ErrorLayout";
+import UpcomingMarathons from "../Pages/Marathons/UpcomingMarathons";
+import Blog from "../components/Blog";
+import BlogDetails from "../components/BlogDetails";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +37,18 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         Component: Login,
+      },
+      {
+        path: "/upcoming-marathons",
+        Component: UpcomingMarathons,
+      },
+      {
+        path: "/blogs",
+        Component: Blog,
+      },
+      {
+        path: "/blog/:id",
+        Component: BlogDetails,
       },
       {
         path: "/marathons",
