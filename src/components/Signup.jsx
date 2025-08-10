@@ -1,4 +1,11 @@
+import React, { useState, useContext } from "react";
+import { FaEyeSlash } from "react-icons/fa";
+import { FaRegEye } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
+import Swal from "sweetalert2";
+import { AuthContext } from "../Context/AuthProvider";
+import { Helmet } from "react-helmet";
 //Maidul123$
 const Signup = () => {
   const { CreateUser, setUser, updateUser, googleSignIn } =
